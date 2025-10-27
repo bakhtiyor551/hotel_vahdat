@@ -78,7 +78,7 @@ export default function AddRoomForm() {
 
   const handleFileSelect = (files) => {
     const fileArray = Array.from(files);
-    rooms    
+    
     // Проверяем размер файлов и формат
     const validFiles = [];
     for (const file of fileArray) {
@@ -172,9 +172,7 @@ export default function AddRoomForm() {
       newErrors.capacity = 'Количество гостей должно быть минимум 1';
     }
     
-    if (photos.length === 0) {
-      newErrors.photos = 'Загрузите минимум одно фото';
-    }
+    // Фото больше не обязательны
     
     if (!formData.description || formData.description.trim().length < 10) {
       newErrors.description = 'Краткое описание должно быть не менее 10 символов';
@@ -420,7 +418,7 @@ export default function AddRoomForm() {
 
         {/* Фотографии */}
         <section className="form-section">
-          <h2>Фотографии номера *</h2>
+          <h2>Фотографии номера</h2>
           
           <div 
             className={`photo-upload-area ${isDragging ? 'dragging' : ''} ${photos.length === 0 ? 'empty' : ''}`}

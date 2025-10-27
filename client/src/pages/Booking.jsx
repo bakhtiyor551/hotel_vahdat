@@ -64,7 +64,7 @@ function Booking() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   {/* Badge цены */}
                   <div className="absolute top-4 right-4 bg-gold text-primary-900 px-4 py-2 rounded-full font-bold shadow-lg">
-                    {room.price}$ <span className="text-sm">/ночь</span>
+                    {room.price} TJS <span className="text-sm">/ночь</span>
                   </div>
                 </div>
               ) : (

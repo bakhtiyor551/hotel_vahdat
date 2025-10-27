@@ -59,7 +59,7 @@ export default function AdminSettings() {
               type="text"
               value={settings.address || ''}
               onChange={(e) => setSettings({ ...settings, address: e.target.value })}
-              placeholder="Душанбе, проспект Рудаки, 84"
+              placeholder="Бохтар, проспект Рудаки, 84"
             />
           </div>
 

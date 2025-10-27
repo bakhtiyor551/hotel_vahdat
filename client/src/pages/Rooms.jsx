@@ -128,7 +128,7 @@ function Rooms() {
                   
                   {/* Price badge */}
                   <div className="absolute top-4 right-4 bg-gold text-dark-blue px-4 py-2 rounded-full font-bold shadow-lg">
-                    {room.price} $
+                    {room.price} TJS
                   </div>
                 </div>
 
@@ -146,14 +146,30 @@ function Rooms() {
                     <div className="mb-4">
                       <p className="text-sm font-semibold text-gray-700 mb-2">{t('rooms.amenities')}:</p>
                       <div className="flex flex-wrap gap-2">
-                        {amenities.slice(0, 4).map((amenity, idx) => (
-                          <span 
-                            key={idx} 
-                            className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
-                          >
-                            {amenity}
-                          </span>
-                        ))}
+                        {amenities.slice(0, 4).map((amenityId, idx) => {
+                          const amenityLabels = {
+                            wifi: 'Wi-Fi',
+                            air_conditioning: 'Кондиционер',
+                            tv: 'Телевизор',
+                            breakfast: 'Завтрак',
+                            bathroom: 'Ванная',
+                            minibar: 'Мини-бар',
+                            safe: 'Сейф',
+                            balcony: 'Балкон',
+                            jacuzzi: 'Джакузи',
+                            parking: 'Парковка',
+                            pet_friendly: 'Животные',
+                            smoking: 'Курящий'
+                          };
+                          return (
+                            <span 
+                              key={idx} 
+                              className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full"
+                            >
+                              {amenityLabels[amenityId] || amenityId}
+                            </span>
+                          );
+                        })}
                         {amenities.length > 4 && (
                           <span className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-full">
                             +{amenities.length - 4}

@@ -52,12 +52,12 @@ function Navbar() {
               >
                 RU
               </button>
-              <button
+              {/* <button
                 onClick={() => changeLanguage('tg')}
                 className={`px-3 py-1 rounded-md transition ${i18n.language === 'tg' ? 'bg-gradient-primary text-white font-bold shadow-md' : 'text-gray-600 hover:text-primary-800'}`}
               >
                 TG
-              </button>
+              </button> */}
               <button
                 onClick={() => changeLanguage('en')}
                 className={`px-3 py-1 rounded-md transition ${i18n.language === 'en' ? 'bg-gradient-primary text-white font-bold shadow-md' : 'text-gray-600 hover:text-primary-800'}`}

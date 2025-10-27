@@ -28,6 +28,8 @@ export default function AdminLayout() {
     { path: '/admin/bookings', icon: '📅', label: 'Бронирования' },
     { path: '/admin/reviews', icon: '💬', label: 'Отзывы' },
     { path: '/admin/services', icon: '🧾', label: 'Услуги' },
+    { path: '/admin/gallery', icon: '📷', label: 'Галерея' },
+    { path: '/admin/finance', icon: '💰', label: 'Финансы' },
     { path: '/admin/users', icon: '👥', label: 'Пользователи' },
     { path: '/admin/settings', icon: '⚙️', label: 'Настройки' },
   ];

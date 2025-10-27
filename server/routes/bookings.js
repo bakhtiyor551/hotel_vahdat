@@ -13,16 +13,23 @@ router.post('/', async (req, res) => {
     }
     
     // Проверка доступности номера
+    // Два интервала [A1, A2] и [B1, B2] пересекаются если: A1 < B2 AND A2 > B1
+    // В нашем случае A - существующее бронирование, B - новое
     const [existing] = await db.query(
-      `SELECT * FROM bookings 
+      `SELECT id, guest_name, check_in, check_out FROM bookings 
        WHERE room_id = ? 
        AND status IN ('pending', 'confirmed') 
-       AND ((check_in <= ? AND check_out >= ?) OR (check_in <= ? AND check_out >= ?))`,
-      [room_id, check_out, check_in, check_in, check_out]
+       AND check_in < ? AND check_out > ?`,
+      [room_id, check_out, check_in]
     );
     
     if (existing.length > 0) {
-      return res.status(400).json({ error: 'Номер уже забронирован на эти даты' });
+      console.log('Конфликт найден. Существующее бронирование:', existing[0]);
+      console.log('Попытка создать бронирование:', { check_in, check_out });
+      return res.status(400).json({ 
+        error: 'Номер уже забронирован на эти даты',
+        details: `Конфликт с бронированием #${existing[0].id} (${existing[0].guest_name})`
+      });
     }
     
     // Создаем бронирование (email теперь nullable)

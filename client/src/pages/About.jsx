@@ -19,7 +19,7 @@ function About() {
           <h2 className="heading-secondary text-center mb-8">{t('about.history')}</h2>
           <div className="space-y-6 text-gray-700">
             <p className="text-lg leading-relaxed">
-              HOTEL VAHDAT был основан в 2015 году в самом сердце столицы Таджикистана - Душанбе. 
+              HOTEL VAHDAT был основан в 2015 году в самом сердце города Бохтар. 
               Отель является символом роскоши, комфорта и гостеприимства.
             </p>
             <p className="text-lg leading-relaxed">

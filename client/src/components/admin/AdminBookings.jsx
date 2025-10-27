@@ -33,6 +33,14 @@ export default function AdminBookings() {
     }
   };
 
+  const calculateDaysAndTotal = (booking) => {
+    const checkIn = new Date(booking.check_in);
+    const checkOut = new Date(booking.check_out);
+    const days = Math.ceil((checkOut - checkIn) / (1000 * 60 * 60 * 24));
+    const total = days * (booking.room_price || 0);
+    return { days, total };
+  };
+
   const filterBookings = () => {
     let filtered = bookings;
 
@@ -58,6 +66,14 @@ export default function AdminBookings() {
 
     setFilteredBookings(filtered);
   };
+
+  // Расчет итоговых сумм
+  const totalStats = filteredBookings.reduce((acc, booking) => {
+    const { days, total } = calculateDaysAndTotal(booking);
+    acc.totalDays += days;
+    acc.totalAmount += total;
+    return acc;
+  }, { totalDays: 0, totalAmount: 0 });
 
   const updateStatus = async (id, status) => {
     if (!window.confirm(`Вы уверены, что хотите изменить статус на "${getStatusLabel(status)}"?`)) {
@@ -192,6 +208,7 @@ export default function AdminBookings() {
                   <th className="px-6 py-4 text-left font-bold">Контакты</th>
                   <th className="px-6 py-4 text-left font-bold">Номер</th>
                   <th className="px-6 py-4 text-left font-bold">Даты</th>
+                  <th className="px-6 py-4 text-left font-bold">Дни/Сумма</th>
                   <th className="px-6 py-4 text-left font-bold">Статус</th>
                   <th className="px-6 py-4 text-left font-bold">Действия</th>
                 </tr>
@@ -220,6 +237,17 @@ export default function AdminBookings() {
                         <div className="text-gray-700">📥 {new Date(booking.check_in).toLocaleDateString('ru')}</div>
                         <div className="text-gray-700">📤 {new Date(booking.check_out).toLocaleDateString('ru')}</div>
                       </div>
+                    </td>
+                    <td className="px-6 py-4">
+                      {(() => {
+                        const { days, total } = calculateDaysAndTotal(booking);
+                        return (
+                          <div className="text-sm">
+                            <div className="font-semibold text-primary-800">📅 {days} {days === 1 ? 'день' : days < 5 ? 'дня' : 'дней'}</div>
+                            <div className="font-bold text-green-600">{total.toFixed(2)} TJS</div>
+                          </div>
+                        );
+                      })()}
                     </td>
                     <td className="px-6 py-4">
                       <span className={getStatusBadgeClass(booking.status)}>
@@ -269,6 +297,7 @@ export default function AdminBookings() {
                   </tr>
                 ))}
               </tbody>
+          
             </table>
           </div>
         </div>
@@ -331,6 +360,24 @@ export default function AdminBookings() {
                 <div>
                   <label className="text-sm font-semibold text-gray-500">Тип номера</label>
                   <p className="text-lg font-bold text-primary-800 capitalize">{selectedBooking.room_type}</p>
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-gray-500">Цена за день</label>
+                  <p className="text-lg font-bold text-primary-800">{(selectedBooking.room_price || 0).toFixed(2)} TJS</p>
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-gray-500">Количество дней</label>
+                  {(() => {
+                    const { days } = calculateDaysAndTotal(selectedBooking);
+                    return <p className="text-lg font-bold text-primary-800">{days} {days === 1 ? 'день' : days < 5 ? 'дня' : 'дней'}</p>;
+                  })()}
+                </div>
+                <div>
+                  <label className="text-sm font-semibold text-gray-500">Общая сумма</label>
+                  {(() => {
+                    const { total } = calculateDaysAndTotal(selectedBooking);
+                    return <p className="text-lg font-bold text-green-600">{total.toFixed(2)} TJS</p>;
+                  })()}
                 </div>
               </div>
               

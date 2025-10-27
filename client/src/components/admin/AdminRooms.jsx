@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import adminApi from '../../utils/adminApi';
 import './AdminRooms.css';
 
@@ -32,6 +32,10 @@ export default function AdminRooms() {
     } catch (error) {
       console.error('Ошибка удаления:', error);
     }
+  };
+
+  const handleEdit = (roomId) => {
+    navigate(`/admin/rooms/edit/${roomId}`);
   };
 
   const typeLabels = {
@@ -69,12 +73,12 @@ export default function AdminRooms() {
             <div className="room-info">
               <h3>{room.name}</h3>
               <p className="room-type">{typeLabels[room.type]}</p>
-              <p className="room-price">${room.price}/ночь</p>
+              <p className="room-price">{room.price} TJS/ночь</p>
               <p className="room-capacity">👥 {room.capacity} места</p>
             </div>
 
             <div className="room-actions">
-              <button onClick={() => alert('Функция редактирования скоро будет доступна')} className="btn-edit">
+              <button onClick={() => handleEdit(room.id)} className="btn-edit">
                 ✏️ Редактировать
               </button>
               <button onClick={() => handleDelete(room.id)} className="btn-delete">

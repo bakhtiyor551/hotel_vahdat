@@ -52,7 +52,7 @@ export default function Dashboard() {
           <div className="stat-icon">💰</div>
           <div className="stat-info">
             <h3>Доход</h3>
-            <p className="stat-value">${stats?.revenue?.toFixed(2) || 0}</p>
+            <p className="stat-value">{stats?.revenue?.toFixed(2) || 0} TJS</p>
             <p className="stat-sub">За текущий месяц</p>
           </div>
         </div>

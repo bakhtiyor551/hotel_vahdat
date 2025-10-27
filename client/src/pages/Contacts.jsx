@@ -55,7 +55,7 @@ function Contacts() {
   };
 
   const contactData = contact || {
-    address: 'Душанбе, проспект Рудаки, 84',
+    address: 'Бохтар, проспект Рудаки, 84',
     phone: '+992 (37) 227-77-77',
     email: 'info@hotelvahdat.com',
     whatsapp: '+992 93 500-77-77',

@@ -99,7 +99,13 @@ function BookingModal({ isOpen, onClose, room, allRooms }) {
     setSubmitStatus('loading');
 
     try {
-      await bookingsAPI.create(formData);
+      // Отправляем только нужные поля (убираем privacy)
+      const { privacy, ...bookingData } = formData;
+      await bookingsAPI.create({
+        ...bookingData,
+        room_id: parseInt(bookingData.room_id),
+        guests: parseInt(bookingData.guests)
+      });
       setSubmitStatus('success');
       
       // Сброс формы через 3 секунды
@@ -122,12 +128,17 @@ function BookingModal({ isOpen, onClose, room, allRooms }) {
       console.error('Ошибка бронирования:', error);
       
       // Проверка на конфликт дат
-      if (error.response?.status === 400 && error.response?.data?.error?.includes('занят')) {
-        setErrors({ 
-          ...errors, 
-          check_in: 'Выбранные даты уже заняты',
-          check_out: 'Выберите другие даты'
-        });
+      if (error.response?.status === 400) {
+        const errorMessage = error.response?.data?.error || '';
+        if (errorMessage.includes('занят') || errorMessage.includes('забронирован')) {
+          setErrors({ 
+            ...errors, 
+            check_in: 'Выбранные даты уже заняты',
+            check_out: 'Выберите другие даты'
+          });
+          setSubmitStatus('error');
+          return;
+        }
       }
       
       setSubmitStatus('error');
@@ -176,7 +187,7 @@ function BookingModal({ isOpen, onClose, room, allRooms }) {
                 <option value="">-- Выберите номер --</option>
                 {allRooms?.map(r => (
                   <option key={r.id} value={r.id}>
-                    {r.name} - {r.price}$/ночь
+                    {r.name} - {r.price} TJS/ночь
                   </option>
                 ))}
               </select>
@@ -196,7 +207,7 @@ function BookingModal({ isOpen, onClose, room, allRooms }) {
                     <h3 className="font-bold text-primary-800">{selectedRoom.name}</h3>
                     <p className="text-sm text-gray-600">{selectedRoom.capacity} гостей</p>
                   </div>
-                  <span className="text-2xl font-bold text-gold">{selectedRoom.price}$</span>
+                  <span className="text-2xl font-bold text-gold">{selectedRoom.price} TJS</span>
                 </div>
               </div>
             ) : null;

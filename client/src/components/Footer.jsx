@@ -16,7 +16,7 @@ function Footer() {
           <div className="animate-fade-in">
             <h3 className="text-2xl font-bold mb-4 bg-gradient-gold bg-clip-text text-transparent">HOTEL VAHDAT</h3>
             <p className="text-gray-300 leading-relaxed">
-              Роскошная гостиница в сердце Душанбе. Комфорт и уют для каждого гостя.
+              Роскошная гостиница в сердце Бохтара. Комфорт и уют для каждого гостя.
             </p>
           </div>
 
@@ -77,7 +77,7 @@ function Footer() {
                 <span className="text-gold text-xl">📞</span> +992 (37) 227-77-77
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-gold text-xl">📍</span> Душанбе, проспект Рудаки
+                <span className="text-gold text-xl">📍</span> Бохтар, проспект Рудаки
               </li>
               <li className="pt-2">
                 <a 

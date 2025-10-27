@@ -48,7 +48,23 @@ function RoomDetails() {
     );
   }
 
-  const amenities = room.amenities ? JSON.parse(room.amenities) : [];
+  // Маппинг ID удобств в названия
+  const amenityLabels = {
+    wifi: 'Wi-Fi 🌐',
+    air_conditioning: 'Кондиционер ❄️',
+    tv: 'Телевизор 📺',
+    breakfast: 'Завтрак 🥐',
+    bathroom: 'Ванная 🚿',
+    minibar: 'Мини-бар 🍾',
+    safe: 'Сейф 🔒',
+    balcony: 'Балкон 🌅',
+    jacuzzi: 'Джакузи 💧',
+    parking: 'Парковка 🚗',
+    pet_friendly: 'Разрешены животные 🐕',
+    smoking: 'Курящий 🚬'
+  };
+  
+  const amenities = room.amenities ? JSON.parse(room.amenities).map(id => amenityLabels[id] || id) : [];
   
   // Данные характеристик в зависимости от типа номера
   const getRoomSpecs = () => {
@@ -117,7 +133,7 @@ function RoomDetails() {
             <div className="mb-6">
               <h1 className="text-4xl font-bold text-dark-blue mb-3">{room.name}</h1>
               <p className="text-3xl font-bold text-gold">
-                {room.price} $ <span className="text-lg text-gray-600">{t('rooms.perNight')}</span>
+                {room.price} TJS <span className="text-lg text-gray-600">{t('rooms.perNight')}</span>
               </p>
             </div>
 
