@@ -7,6 +7,11 @@ router.post('/', async (req, res) => {
   try {
     const { room_id, check_in, check_out, guests, guest_name, guest_email, guest_phone, special_requests } = req.body;
     
+    // Валидация обязательных полей
+    if (!room_id || !check_in || !check_out || !guests || !guest_name || !guest_phone) {
+      return res.status(400).json({ error: 'Заполните все обязательные поля' });
+    }
+    
     // Проверка доступности номера
     const [existing] = await db.query(
       `SELECT * FROM bookings 
@@ -20,11 +25,11 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'Номер уже забронирован на эти даты' });
     }
     
-    // Создаем бронирование
+    // Создаем бронирование (email теперь nullable)
     const [result] = await db.query(
       `INSERT INTO bookings (room_id, check_in, check_out, guests, guest_name, guest_email, guest_phone, special_requests, status, created_at) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', NOW())`,
-      [room_id, check_in, check_out, guests, guest_name, guest_email, guest_phone, special_requests]
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', CURRENT_TIMESTAMP)`,
+      [room_id, check_in, check_out, guests, guest_name, guest_email || null, guest_phone, special_requests || null]
     );
     
     res.json({ 
@@ -33,7 +38,7 @@ router.post('/', async (req, res) => {
     });
   } catch (error) {
     console.error('Ошибка создания бронирования:', error);
-    res.status(500).json({ error: 'Ошибка сервера' });
+    res.status(500).json({ error: error.message || 'Ошибка сервера' });
   }
 });
 
@@ -61,6 +66,17 @@ router.put('/:id/status', async (req, res) => {
     res.json({ message: 'Статус обновлен' });
   } catch (error) {
     console.error('Ошибка обновления статуса:', error);
+    res.status(500).json({ error: 'Ошибка сервера' });
+  }
+});
+
+// Удалить бронирование
+router.delete('/:id', async (req, res) => {
+  try {
+    await db.query('DELETE FROM bookings WHERE id = ?', [req.params.id]);
+    res.json({ message: 'Бронирование удалено' });
+  } catch (error) {
+    console.error('Ошибка удаления бронирования:', error);
     res.status(500).json({ error: 'Ошибка сервера' });
   }
 });

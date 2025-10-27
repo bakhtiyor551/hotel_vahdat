@@ -1,179 +1,131 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSearchParams } from 'react-router-dom';
-import { bookingsAPI } from '../utils/api';
+import { roomsAPI } from '../utils/api';
+import BookingModal from '../components/BookingModal';
 
 function Booking() {
   const { t } = useTranslation();
   const [searchParams] = useSearchParams();
-  const [formData, setFormData] = useState({
-    room_id: searchParams.get('room') || '',
-    check_in: '',
-    check_out: '',
-    guests: 2,
-    guest_name: '',
-    guest_email: '',
-    guest_phone: '',
-    special_requests: ''
-  });
-  const [submitStatus, setSubmitStatus] = useState('');
+  const [rooms, setRooms] = useState([]);
+  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  useEffect(() => {
+    loadRooms();
+  }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setSubmitStatus('loading');
-
+  const loadRooms = async () => {
     try {
-      await bookingsAPI.create(formData);
-      setSubmitStatus('success');
-      setFormData({
-        room_id: '',
-        check_in: '',
-        check_out: '',
-        guests: 2,
-        guest_name: '',
-        guest_email: '',
-        guest_phone: '',
-        special_requests: ''
-      });
+      const res = await roomsAPI.getAll();
+      setRooms(res.data);
+      
+      // Если передан ID номера через URL
+      const roomId = searchParams.get('room');
+      if (roomId) {
+        const room = res.data.find(r => r.id == roomId);
+        if (room) {
+          setSelectedRoom(room);
+          setShowModal(true);
+        }
+      }
     } catch (error) {
-      console.error('Ошибка бронирования:', error);
-      setSubmitStatus('error');
+      console.error('Ошибка загрузки номеров:', error);
     }
   };
 
+  const handleBookRoom = (room) => {
+    setSelectedRoom(room);
+    setShowModal(true);
+  };
+
   return (
-    <div className="section-padding bg-gray-50">
-      <div className="container-custom max-w-3xl">
-        <h1 className="heading-primary text-center mb-8">{t('booking.title')}</h1>
+    <div className="section-padding bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      <div className="container-custom">
+        <div className="text-center mb-12">
+          <h1 className="heading-primary mb-4">Забронировать номер</h1>
+          <p className="text-xl text-gray-600">
+            Выберите номер и заполните форму для бронирования
+          </p>
+        </div>
 
-        {submitStatus === 'success' && (
-          <div className="mb-6 p-4 bg-green-100 text-green-800 rounded-lg">
-            {t('booking.success')}
-          </div>
-        )}
+        {/* Список номеров */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {rooms.map((room) => (
+            <div key={room.id} className="card card-hover group relative overflow-hidden">
+              {/* Изображение */}
+              {room.photos && room.photos[0] ? (
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={room.photos[0].photo_url} 
+                    alt={room.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  {/* Badge цены */}
+                  <div className="absolute top-4 right-4 bg-gold text-primary-900 px-4 py-2 rounded-full font-bold shadow-lg">
+                    {room.price}$ <span className="text-sm">/ночь</span>
+                  </div>
+                </div>
+              ) : (
+                <div className="h-64 bg-gradient-to-br from-primary-600 to-primary-800"></div>
+              )}
 
-        {submitStatus === 'error' && (
-          <div className="mb-6 p-4 bg-red-100 text-red-800 rounded-lg">
-            Произошла ошибка. Попробуйте позже.
-          </div>
-        )}
+              <div className="p-6">
+                <h3 className="text-2xl font-bold mb-3 text-primary-800">{room.name}</h3>
+                <p className="text-gray-600 mb-4 line-clamp-3">{room.description}</p>
+                
+                <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <span>👥 {room.capacity} гостей</span>
+                  <span className="capitalize">{room.type}</span>
+                </div>
 
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-semibold mb-2">{t('booking.checkIn')}</label>
-              <input
-                type="date"
-                name="check_in"
-                required
-                value={formData.check_in}
-                onChange={handleChange}
-                min={new Date().toISOString().split('T')[0]}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-              />
+                <button
+                  onClick={() => handleBookRoom(room)}
+                  className="w-full btn-primary mt-4"
+                >
+                  Забронировать
+                </button>
+              </div>
             </div>
+          ))}
+        </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2">{t('booking.checkOut')}</label>
-              <input
-                type="date"
-                name="check_out"
-                required
-                value={formData.check_out}
-                onChange={handleChange}
-                min={formData.check_in || new Date().toISOString().split('T')[0]}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-              />
+        {/* Информация о бронировании */}
+        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-200">
+          <h2 className="text-2xl font-bold text-primary-800 mb-6 text-center">
+            Как работает бронирование?
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="text-center">
+              <div className="text-5xl mb-4">📝</div>
+              <h3 className="font-bold text-primary-800 mb-2">Заполните форму</h3>
+              <p className="text-gray-600">Выберите номер, даты и контакты</p>
             </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-2">{t('booking.guests')}</label>
-              <input
-                type="number"
-                name="guests"
-                required
-                min="1"
-                max="10"
-                value={formData.guests}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-              />
+            <div className="text-center">
+              <div className="text-5xl mb-4">✅</div>
+              <h3 className="font-bold text-primary-800 mb-2">Подтверждение</h3>
+              <p className="text-gray-600">Мы свяжемся с вами для подтверждения</p>
             </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-2">{t('booking.roomType')}</label>
-              <input
-                type="text"
-                value={formData.room_id}
-                readOnly
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-100"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-2">{t('booking.name')}</label>
-              <input
-                type="text"
-                name="guest_name"
-                required
-                value={formData.guest_name}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-2">{t('booking.email')}</label>
-              <input
-                type="email"
-                name="guest_email"
-                required
-                value={formData.guest_email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-semibold mb-2">{t('booking.phone')}</label>
-              <input
-                type="tel"
-                name="guest_phone"
-                required
-                value={formData.guest_phone}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-              />
+            <div className="text-center">
+              <div className="text-5xl mb-4">🏨</div>
+              <h3 className="font-bold text-primary-800 mb-2">Заселение</h3>
+              <p className="text-gray-600">Приезжайте к нам в назначенное время</p>
             </div>
           </div>
-
-          <div className="mt-6">
-            <label className="block text-sm font-semibold mb-2">{t('booking.specialRequests')}</label>
-            <textarea
-              name="special_requests"
-              rows="4"
-              value={formData.special_requests}
-              onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-            />
-          </div>
-
-          <button
-            type="submit"
-            disabled={submitStatus === 'loading'}
-            className="w-full mt-8 btn-primary disabled:opacity-50"
-          >
-            {submitStatus === 'loading' ? 'Отправка...' : t('booking.submit')}
-          </button>
-        </form>
+        </div>
       </div>
+
+      {/* Модальное окно */}
+      <BookingModal 
+        isOpen={showModal}
+        onClose={() => {
+          setShowModal(false);
+          setSelectedRoom(null);
+        }}
+        room={selectedRoom}
+        allRooms={rooms}
+      />
     </div>
   );
 }

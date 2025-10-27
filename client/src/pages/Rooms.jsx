@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { roomsAPI } from '../utils/api';
+import BookingModal from '../components/BookingModal';
 
 function Rooms() {
   const { t } = useTranslation();
   const [rooms, setRooms] = useState([]);
   const [filter, setFilter] = useState('all');
   const [loading, setLoading] = useState(true);
+  const [selectedRoom, setSelectedRoom] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     loadRooms();
@@ -164,22 +167,36 @@ function Rooms() {
                   <div className="mt-6 flex gap-3">
                     <Link 
                       to={`/rooms/${room.id}`} 
-                      className="flex-1 bg-dark-blue hover:bg-blue-900 text-white font-semibold py-3 px-4 rounded-lg text-center transition"
+                      className="flex-1 bg-primary-800 hover:bg-primary-900 text-white font-semibold py-3 px-4 rounded-lg text-center transition"
                     >
                       {t('rooms.moreDetails')}
                     </Link>
-                    <Link 
-                      to={`/booking?room=${room.id}`} 
-                      className="flex-1 bg-gold hover:bg-yellow-600 text-dark-blue font-bold py-3 px-4 rounded-lg text-center transition"
+                    <button 
+                      onClick={() => {
+                        setSelectedRoom(room);
+                        setShowModal(true);
+                      }}
+                      className="flex-1 btn-gold"
                     >
                       {t('rooms.bookNow')}
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* Модальное окно бронирования */}
+        <BookingModal 
+          isOpen={showModal}
+          onClose={() => {
+            setShowModal(false);
+            setSelectedRoom(null);
+          }}
+          room={selectedRoom}
+          allRooms={rooms}
+        />
 
         {filteredRooms.length === 0 && (
           <div className="text-center py-20">

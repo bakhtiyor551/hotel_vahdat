@@ -5,38 +5,42 @@ function Footer() {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-dark-blue text-white">
-      <div className="container-custom section-padding">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="footer-gradient text-white relative overflow-hidden">
+      {/* Декоративные элементы */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-primary-600 rounded-full blur-3xl opacity-10 animate-float"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary-500 rounded-full blur-3xl opacity-10 animate-float" style={{animationDelay: '1.5s'}}></div>
+      
+      <div className="container-custom section-padding relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           {/* About */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-gold">HOTEL VAHDAT</h3>
-            <p className="text-gray-300">
+          <div className="animate-fade-in">
+            <h3 className="text-2xl font-bold mb-4 bg-gradient-gold bg-clip-text text-transparent">HOTEL VAHDAT</h3>
+            <p className="text-gray-300 leading-relaxed">
               Роскошная гостиница в сердце Душанбе. Комфорт и уют для каждого гостя.
             </p>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Быстрые ссылки</h4>
-            <ul className="space-y-2">
+          <div className="animate-fade-in" style={{animationDelay: '0.1s'}}>
+            <h4 className="text-lg font-bold mb-6 text-gold">Быстрые ссылки</h4>
+            <ul className="space-y-3">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-gold transition">
+                <Link to="/" className="text-gray-300 hover:text-gold transition hover:translate-x-2 inline-block">
                   {t('nav.home')}
                 </Link>
               </li>
               <li>
-                <Link to="/rooms" className="text-gray-300 hover:text-gold transition">
+                <Link to="/rooms" className="text-gray-300 hover:text-gold transition hover:translate-x-2 inline-block">
                   {t('nav.rooms')}
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-gold transition">
+                <Link to="/services" className="text-gray-300 hover:text-gold transition hover:translate-x-2 inline-block">
                   {t('nav.services')}
                 </Link>
               </li>
               <li>
-                <Link to="/contacts" className="text-gray-300 hover:text-gold transition">
+                <Link to="/contacts" className="text-gray-300 hover:text-gold transition hover:translate-x-2 inline-block">
                   {t('nav.contacts')}
                 </Link>
               </li>
@@ -44,34 +48,53 @@ function Footer() {
           </div>
 
           {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Услуги</h4>
-            <ul className="space-y-2 text-gray-300">
-              <li>{t('services.breakfast')}</li>
-              <li>{t('services.transfer')}</li>
-              <li>{t('services.conference')}</li>
-              <li>{t('services.parking')}</li>
+          <div className="animate-fade-in" style={{animationDelay: '0.2s'}}>
+            <h4 className="text-lg font-bold mb-6 text-gold">Услуги</h4>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-center gap-2">
+                <span className="text-gold">✨</span> {t('services.breakfast')}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-gold">🚗</span> {t('services.transfer')}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-gold">🎯</span> {t('services.conference')}
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-gold">🅿️</span> {t('services.parking')}
+              </li>
             </ul>
           </div>
 
           {/* Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Контакты</h4>
-            <ul className="space-y-2 text-gray-300">
-              <li>📧 info@hotelvahdat.com</li>
-              <li>📞 +992 (37) 227-77-77</li>
-              <li>📍 Душанбе, проспект Рудаки</li>
+          <div className="animate-fade-in" style={{animationDelay: '0.3s'}}>
+            <h4 className="text-lg font-bold mb-6 text-gold">Контакты</h4>
+            <ul className="space-y-3 text-gray-300">
+              <li className="flex items-center gap-2">
+                <span className="text-gold text-xl">📧</span> info@hotelvahdat.com
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-gold text-xl">📞</span> +992 (37) 227-77-77
+              </li>
+              <li className="flex items-center gap-2">
+                <span className="text-gold text-xl">📍</span> Душанбе, проспект Рудаки
+              </li>
               <li className="pt-2">
-                <a href="https://wa.me/992935007777" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition">
-                  💬 WhatsApp
+                <a 
+                  href="https://wa.me/992935007777" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center gap-2 hover:text-gold transition hover:translate-x-1 inline-block"
+                >
+                  <span className="text-gold text-xl">💬</span> WhatsApp
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
-          <p>&copy; 2025 HOTEL VAHDAT. Все права защищены.</p>
+        <div className="border-t border-white/20 mt-12 pt-8 text-center">
+          <p className="text-gray-400">&copy; 2025 HOTEL VAHDAT. Все права защищены.</p>
         </div>
       </div>
     </footer>

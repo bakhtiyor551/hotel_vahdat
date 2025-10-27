@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { roomsAPI } from '../utils/api';
+import BookingModal from '../components/BookingModal';
 
 function RoomDetails() {
   const { id } = useParams();
@@ -10,6 +11,7 @@ function RoomDetails() {
   const [room, setRoom] = useState(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showBookingModal, setShowBookingModal] = useState(false);
 
   useEffect(() => {
     loadRoom();
@@ -166,12 +168,12 @@ function RoomDetails() {
 
             {/* Кнопки действий */}
             <div className="flex flex-col md:flex-row gap-4">
-              <Link 
-                to={`/booking?room=${id}`} 
+              <button
+                onClick={() => setShowBookingModal(true)}
                 className="btn-primary flex-1 text-center py-4 text-lg hover:scale-105 transition"
               >
                 {t('rooms.bookNow')}
-              </Link>
+              </button>
               
               <a 
                 href="https://wa.me/99293500777?text=Здравствуйте!%20Хочу%20забронировать%20номер" 
@@ -201,6 +203,13 @@ function RoomDetails() {
           </div>
         </div>
       </div>
+
+      {/* Модальное окно бронирования */}
+      <BookingModal 
+        isOpen={showBookingModal}
+        onClose={() => setShowBookingModal(false)}
+        room={room}
+      />
     </div>
   );
 }

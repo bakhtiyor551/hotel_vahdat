@@ -17,6 +17,8 @@ export const roomsAPI = {
 export const bookingsAPI = {
   create: (data) => api.post('/bookings', data),
   getAll: () => api.get('/bookings'),
+  updateStatus: (id, status) => api.put(`/bookings/${id}/status`, { status }),
+  delete: (id) => api.delete(`/bookings/${id}`),
 };
 
 export const servicesAPI = {
