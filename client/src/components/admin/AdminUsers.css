@@ -1,0 +1,101 @@
+.admin-users h1,
+.admin-header-section h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.admin-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.users-table {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.users-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.users-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.users-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.users-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.users-table tr:hover {
+  background: #f8f9fa;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #4299e1;
+  color: white;
+}
+
+.role-badge.role-admin {
+  background: #9f7aea;
+}
+
+.role-badge.role-manager {
+  background: #4299e1;
+}
+
+.role-badge.role-editor {
+  background: #48bb78;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.active {
+  background: #9ae6b4;
+  color: #22543d;
+}
+
+.status-badge.inactive {
+  background: #fc8181;
+  color: #742a2a;
+}
+
+.btn-edit {
+  background: #4299e1;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.btn-edit:hover {
+  background: #3182ce;
+}
+

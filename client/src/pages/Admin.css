@@ -1,0 +1,160 @@
+/* Admin Layout Styles */
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f5f5f5;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 250px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transition: all 0.3s;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.admin-sidebar.closed {
+  width: 70px;
+}
+
+.admin-logo {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-logo h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.admin-logo p {
+  margin: 5px 0 0 0;
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.admin-nav {
+  padding: 10px;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 15px;
+  margin: 5px 0;
+  border-radius: 8px;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.admin-nav-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.admin-nav-item.active {
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+.admin-nav-item .icon {
+  font-size: 20px;
+}
+
+.admin-nav-item .label {
+  font-size: 14px;
+}
+
+/* Main Content */
+.admin-main {
+  flex: 1;
+  margin-left: 250px;
+  transition: all 0.3s;
+}
+
+.admin-sidebar.closed ~ .admin-main {
+  margin-left: 70px;
+}
+
+/* Header */
+.admin-header {
+  background: white;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.sidebar-toggle:hover {
+  background: #f5f5f5;
+}
+
+.admin-header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.admin-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.admin-notifications {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.admin-logout {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.admin-logout:hover {
+  background: #c82333;
+}
+
+/* Content */
+.admin-content {
+  padding: 30px;
+}
+

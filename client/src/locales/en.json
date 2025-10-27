@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "home": "Home",
+    "rooms": "Rooms",
+    "about": "About",
+    "services": "Services",
+    "contacts": "Contacts"
+  },
+  "home": {
+    "welcome": "Welcome to HOTEL VAHDAT",
+    "subtitle": "Luxury and comfort in the heart of Dushanbe",
+    "bookNow": "Book Now",
+    "learnMore": "Learn More",
+    "advantages": "Our Advantages",
+    "popularRooms": "Popular Rooms",
+    "testimonials": "Guest Reviews",
+    "contactUs": "Contact Us"
+  },
+  "rooms": {
+    "title": "Our Rooms",
+    "economy": "Economy",
+    "standard": "Standard",
+    "luxury": "Luxury",
+    "suite": "Suite",
+    "capacity": "Capacity",
+    "guests": "guests",
+    "price": "from",
+    "perNight": "per night",
+    "amenities": "Amenities",
+    "bookNow": "Book Now",
+    "moreDetails": "More Details"
+  },
+  "booking": {
+    "title": "Book a Room",
+    "checkIn": "Check-in Date",
+    "checkOut": "Check-out Date",
+    "guests": "Number of Guests",
+    "roomType": "Room Type",
+    "name": "Your Name",
+    "email": "Email",
+    "phone": "Phone",
+    "specialRequests": "Special Requests",
+    "submit": "Submit Request",
+    "success": "Thank you! Your request has been submitted. We will contact you soon."
+  },
+  "contacts": {
+    "title": "Contacts",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "sendMessage": "Send Message",
+    "formName": "Name",
+    "formEmail": "Email",
+    "formPhone": "Phone",
+    "formSubject": "Subject",
+    "formMessage": "Message",
+    "formSubmit": "Send",
+    "success": "Message sent!"
+  },
+  "services": {
+    "title": "Our Services",
+    "breakfast": "Breakfast",
+    "transfer": "Transfer",
+    "conference": "Conference Hall",
+    "laundry": "Laundry",
+    "roomService": "Room Service",
+    "parking": "Parking"
+  },
+  "about": {
+    "title": "About Hotel",
+    "history": "History",
+    "mission": "Mission",
+    "values": "Values",
+    "team": "Team"
+  }
+}
+

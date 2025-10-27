@@ -1,0 +1,161 @@
+.admin-reviews h1 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.reviews-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.reviews-filters button {
+  padding: 10px 20px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  color: #666;
+}
+
+.reviews-filters button:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.reviews-filters button.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.review-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 15px;
+}
+
+.review-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 16px;
+}
+
+.review-date {
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.review-rating {
+  font-size: 20px;
+}
+
+.review-comment {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.pending {
+  background: #feb2b2;
+  color: #c53030;
+}
+
+.status-badge.approved {
+  background: #9ae6b4;
+  color: #22543d;
+}
+
+.status-badge.rejected {
+  background: #fc8181;
+  color: #742a2a;
+}
+
+.review-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-approve, .btn-reject, .btn-delete {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-approve {
+  background: #48bb78;
+  color: white;
+}
+
+.btn-approve:hover {
+  background: #38a169;
+}
+
+.btn-reject {
+  background: #ed8936;
+  color: white;
+}
+
+.btn-reject:hover {
+  background: #dd6b20;
+}
+
+.btn-delete {
+  background: #f56565;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #e53e3e;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px;
+  color: #999;
+  font-size: 16px;
+}
+

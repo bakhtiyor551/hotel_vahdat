@@ -1,0 +1,106 @@
+.admin-bookings h1 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.bookings-table {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.bookings-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.bookings-table thead {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.bookings-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.bookings-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.bookings-table tr:hover {
+  background: #f8f9fa;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-badge.orange {
+  background: #feb2b2;
+  color: #c53030;
+}
+
+.status-badge.green {
+  background: #9ae6b4;
+  color: #22543d;
+}
+
+.status-badge.red {
+  background: #fc8181;
+  color: #742a2a;
+}
+
+.status-badge.gray {
+  background: #cbd5e0;
+  color: #2d3748;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-confirm, .btn-cancel {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-confirm {
+  background: #48bb78;
+  color: white;
+}
+
+.btn-confirm:hover {
+  background: #38a169;
+}
+
+.btn-cancel {
+  background: #f56565;
+  color: white;
+}
+
+.btn-cancel:hover {
+  background: #e53e3e;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px;
+  color: #999;
+  font-size: 16px;
+}
+

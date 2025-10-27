@@ -1,0 +1,113 @@
+.admin-services h1,
+.admin-header-section h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.admin-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.service-card h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.service-card p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.service-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.status-badge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.status-badge.active {
+  background: #48bb78;
+}
+
+.status-badge.inactive {
+  background: #f56565;
+}
+
+.sort-order {
+  color: #999;
+  font-size: 12px;
+}
+
+.service-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.btn-edit, .btn-delete {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.btn-edit {
+  background: #4299e1;
+  color: white;
+}
+
+.btn-edit:hover {
+  background: #3182ce;
+}
+
+.btn-delete {
+  background: #f56565;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #e53e3e;
+}
+

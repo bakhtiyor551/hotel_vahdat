@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "home": "Асосӣ",
+    "rooms": "Ҳуҷраҳо",
+    "about": "Дар бораи ҳотел",
+    "services": "Хизматҳо",
+    "contacts": "Алоқа"
+  },
+  "home": {
+    "welcome": "Хуш омадед ба HOTEL VAHDAT",
+    "subtitle": "Лукс ва роҳати дар қалби Душанбе",
+    "bookNow": "Ҳуҷраро дарёфт кардан",
+    "learnMore": "Бештар маълумот",
+    "advantages": "Қадрияти моро",
+    "popularRooms": "Ҳуҷраҳои машҳур",
+    "testimonials": "Шарҳи меҳмонон",
+    "contactUs": "Бо мо тамос гиред"
+  },
+  "rooms": {
+    "title": "Ҳуҷраҳои моро",
+    "economy": "Иқтисодӣ",
+    "standard": "Стандартӣ",
+    "luxury": "Лукс",
+    "suite": "Суит",
+    "capacity": "Квoта",
+    "guests": "меҳмон",
+    "price": "ағз",
+    "perNight": "дар шаб",
+    "amenities": "Роҳатӣ",
+    "bookNow": "Ҳуҷраро дарёфт кардан",
+    "moreDetails": "Тафсилот"
+  },
+  "booking": {
+    "title": "Ҳуҷраро дарёфт кардан",
+    "checkIn": "Рӯзи воридшавӣ",
+    "checkOut": "Рӯзи баромад",
+    "guests": "Миқдори меҳмонон",
+    "roomType": "Намуди ҳуҷра",
+    "name": "Номи шумо",
+    "email": "Email",
+    "phone": "Телефон",
+    "specialRequests": "Хостиҳои махсус",
+    "submit": "Фиристодани дархост",
+    "success": "Ташаккур! Дархosti шумо фиристода шуд."
+  },
+  "contacts": {
+    "title": "Алоқа",
+    "address": "Адрес",
+    "phone": "Телефон",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "telegram": "Telegram",
+    "sendMessage": "Пайём фиристед",
+    "formName": "Ном",
+    "formEmail": "Email",
+    "formPhone": "Телефон",
+    "formSubject": "Мavzu",
+    "formMessage": "Пайём",
+    "formSubmit": "Фиристoдан",
+    "success": "Пайoм фиристода шуд!"
+  },
+  "services": {
+    "title": "Хизматҳoи мoрo",
+    "breakfast": "Наҳорӣ",
+    "transfer": "Хидмати нақл",
+    "conference": "Ҳoҷаи конференс",
+    "laundry": "Эндаҳӣ",
+    "roomService": "Хизмати ҳuҷра",
+    "parking": "Истгоҳ"
+  },
+  "about": {
+    "title": "Дар бораи ҳoтел",
+    "history": "Таърих",
+    "mission": "Мансият",
+    "values": "Қиматҳo",
+    "team": "Даста"
+  }
+}
+
